@@ -50,7 +50,7 @@ public class SimulatedSensor {
 
         // update the humidity level wrt being watered or not
         if (beingWatered) {
-            humidityLevel -= HUMIDITY_INCREASE_RATE;
+            humidityLevel += HUMIDITY_INCREASE_RATE;
         } else {
             humidityLevel -= DRYING_RATE;
         }

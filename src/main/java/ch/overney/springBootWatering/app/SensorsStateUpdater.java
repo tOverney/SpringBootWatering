@@ -43,7 +43,7 @@ public class SensorsStateUpdater {
         // fetch the sensor data
         RestTemplate restTemplate = new RestTemplate();
         SensorData sensorData =
-                restTemplate.getForObject("http://localhost:8080/"+group.getCompanyId()+"/"+sensor.getSensorId(), SensorData.class);
+                restTemplate.getForObject("http://localhost:8080/status/"+group.getCompanyId()+"/"+sensor.getSensorId(), SensorData.class);
 
         // check the humidity level
         double humidityLevel = sensorData.getHumidityLevel();
@@ -67,9 +67,6 @@ public class SensorsStateUpdater {
         // if true, the sensor was not in the set yet.
         if (sensorsBeingWatered.add(sensor)) {
             System.out.println("Start watering sensor #"+sensor.getSensorId());
-            RestTemplate restTemplate = new RestTemplate();
-            // we do not care about what object is being sent as request.
-            // Ideally we should have some error handling in case we get replies other than 200s.
             managePutRequest("http://localhost:8080/start/"+sensor.getCompanyId()+"/"+sensor.getSensorId());
         }
     }
@@ -86,7 +83,7 @@ public class SensorsStateUpdater {
         // we do not care about what object is being sent as request.
         try {
             RestTemplate restTemplate = new RestTemplate();
-            restTemplate.put(url, new Object());
+            restTemplate.put(url, "");
         } catch (HttpClientErrorException httpError) {
             httpError.printStackTrace();
         }

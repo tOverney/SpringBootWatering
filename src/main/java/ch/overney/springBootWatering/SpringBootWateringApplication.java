@@ -17,7 +17,7 @@ public class SpringBootWateringApplication {
 		MockDataHandler.getInstance().generateDataForCompany(loggedInUser.getCompanyId());
 		SpringApplication.run(SpringBootWateringApplication.class, args);
 
-		// Start the REST API consumer
+		// Start the REST API consumer when server is ready.
 		SensorsStateUpdater.runForever();
 	}
 }

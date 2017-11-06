@@ -7,6 +7,18 @@ public class Point {
     private int x;
     private int y;
 
+    // Needed by Jackson
+    public Point() { }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+    // --
+
     public Point(int x, int y) {
         this.x = x;
         this.y = y;
@@ -34,9 +46,8 @@ public class Point {
         return false;
     }
 
-    @Override
-    public String toString() {
-        return "Point{" + "x=" + x + ", y=" + y + '}';
+    public String toJSON() {
+        return "{" + "\"x\": " + x + ", \"y\": " + y + '}';
     }
 
     public String prettyPrint() {

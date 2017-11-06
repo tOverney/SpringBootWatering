@@ -13,6 +13,22 @@ public class SensorData {
     private Point position;
     private double humidityLevel;
 
+    // Needed by Jackson!
+    public SensorData() { }
+
+    public void setHumidityLevel(double humidityLevel) {
+        this.humidityLevel = humidityLevel;
+    }
+
+    public void setPosition(Point position) {
+        this.position = position;
+    }
+
+    public void setSensorId(long sensorId) {
+        this.sensorId = sensorId;
+    }
+    // -----
+
     public SensorData(long sensorId, Point position, double humidityLevel) {
         this.sensorId = sensorId;
         this.position = position;
@@ -31,12 +47,9 @@ public class SensorData {
         return humidityLevel;
     }
 
-    @Override
-    public String toString() {
-        return "SensorData{" +
-                "sensorId=" + sensorId +
-                ", position=" + position +
-                ", humidityLevel=" + humidityLevel +
-                '}';
+    public String toJSON() {
+        return "{" + "\"sensorId\": " + sensorId +
+                ", \"position\": " + position.toJSON() +
+                ", \"humidityLevel\": " + humidityLevel + '}';
     }
 }

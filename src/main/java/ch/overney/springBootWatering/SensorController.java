@@ -12,11 +12,12 @@ public class SensorController {
     @RequestMapping(value="/status/{companyId}/{sensorId}", method= RequestMethod.GET)
     public String getStatus(@PathVariable long companyId, @PathVariable long sensorId) {
         SimulatedSensor requestedSensor = MockDataHandler.getInstance().fetchSimulated(sensorId);
-        return requestedSensor.getStatus(companyId).toString();
+        return requestedSensor.getStatus(companyId).toJSON();
     }
 
     @RequestMapping(value="/start/{companyId}/{sensorId}", method= RequestMethod.PUT)
     public HttpStatus startWatering(@PathVariable long companyId, @PathVariable long sensorId) {
+        System.out.println("check check check! " + sensorId);
         SimulatedSensor requestedSensor = MockDataHandler.getInstance().fetchSimulated(sensorId);
         return booleanToHttpStatus(requestedSensor.startWatering(companyId));
     }
