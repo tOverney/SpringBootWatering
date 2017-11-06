@@ -36,6 +36,10 @@ public class Sensor {
         return lastPosition;
     }
 
+    public void setLastPosition(Point lastPosition) {
+        this.lastPosition = lastPosition;
+    }
+
     public long getCompanyId() {
         return companyId;
     }

@@ -4,6 +4,7 @@ import ch.overney.springBootWatering.data.MockDataHandler;
 import ch.overney.springBootWatering.data.Sensor;
 import ch.overney.springBootWatering.data.SensorData;
 import ch.overney.springBootWatering.data.SensorGroup;
+import ch.overney.springBootWatering.util.Point;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
@@ -60,7 +61,12 @@ public class SensorsStateUpdater {
         }
 
         // check position
-
+        Point newPosition = sensorData.getPosition();
+        if (!newPosition.equals(sensor.getLastPosition())) {
+            System.out.println("WARNING, sensor #" + sensor.getSensorId() + " was moved to " + newPosition.prettyPrint() +
+                    " you might want to change the group it belongs to.");
+            sensor.setLastPosition(newPosition);
+        }
     }
 
     private static void startWatering(Sensor sensor) {
