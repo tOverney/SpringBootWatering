@@ -13,7 +13,7 @@ Handle all the REST entry points.
 
 Holds the two helper classes, `Point` which represent a 2D point and a dummy user which wasn't really necessary for the sake of this small project.
 
-## Data
+## Data
 
 Data holds all the data structures and the Data handling classes
 
